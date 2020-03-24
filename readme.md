@@ -20,7 +20,7 @@ These rules are always visible via ".roll help" command.
 * **No duplicates:** no10 *Example: .roll 10 no10 -> Rolls 10 dice and does not duplicate 10s.*
 * **Custom success:** cs[Value of success] *Example: .roll 10 cs5 -> Rolls 10 dice and marks 5s as successes.*
 
-### Pendientes
+### To do
 * Currently, it adds an emoji besides the result, according to the success level of the roll. However, in the future, i'd like to upgrade it so that it reacts with animated gifs, with the giphy plugin, choosing a random gif within a category (For example, in case of a botch it could display a "sadness" one, in case of exceptional success it could display a "congratulations" one, etc...)
 * Create the functionality to set a game system with its rules, so that it applies them to all future rolls. It already has the structure to do it, but the functionality still has to be created.
 
