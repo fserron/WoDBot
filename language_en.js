@@ -25,10 +25,13 @@ const MESSAGE_HELP_AUTO_TITLE = 'Automatic success: a[amomunt of successes]';
 const MESSAGE_HELP_AUTO_EXAMPLE = 'Example: .roll 10 a3 -> Rolls 10 dice and adds 3 successes to the result.';
 const MESSAGE_HELP_TARGET_TITLE = 'Target number: t[Value of success]';
 const MESSAGE_HELP_TARGET_EXAMPLE = 'Example: .roll 10 t4 -> Rolls 10 dice and marks 4s and above as successes.';
+const MESSAGE_HELP_CANCEL_TITLE = 'Cancel successes: c[Cancelling values]';
+const MESSAGE_HELP_CANCEL_EXAMPLE = 'Example: .roll 10 c1 -> Rolls 10 dice and cancels a success per each 1.';
 const MESSAGE_HELP_NO10_TITLE = 'No duplicates: no10';
 const MESSAGE_HELP_NO10_EXAMPLE = 'Example: .roll 10 no10 -> Rolls 10 dice and does not duplicate 10s.';
 const MESSAGE_HELP_CUSTOM_TITLE = 'Custom success: cs[Value of success]';
 const MESSAGE_HELP_CUSTOM_EXAMPLE = 'Example: .roll 10 cs5 -> Rolls 10 dice and marks 5s as  successes.';
+const MESSAGE_HELP_FOOTER = 'For additional info and how to add this bot to your server, go to https://github.com/fserron/WoDBot';
 
 module.exports = {
     ERROR_MULTIPLE_DICE_NUMBERS: ERROR_MULTIPLE_DICE_NUMBERS,
@@ -58,5 +61,8 @@ module.exports = {
     MESSAGE_HELP_NO10_TITLE: MESSAGE_HELP_NO10_TITLE,
     MESSAGE_HELP_NO10_EXAMPLE: MESSAGE_HELP_NO10_EXAMPLE,
     MESSAGE_HELP_CUSTOM_TITLE: MESSAGE_HELP_CUSTOM_TITLE,
-    MESSAGE_HELP_CUSTOM_EXAMPLE: MESSAGE_HELP_CUSTOM_EXAMPLE
+    MESSAGE_HELP_CUSTOM_EXAMPLE: MESSAGE_HELP_CUSTOM_EXAMPLE,
+    MESSAGE_HELP_CANCEL_TITLE: MESSAGE_HELP_CANCEL_TITLE,
+    MESSAGE_HELP_CANCEL_EXAMPLE: MESSAGE_HELP_CANCEL_EXAMPLE,
+    MESSAGE_HELP_FOOTER: MESSAGE_HELP_FOOTER
 }

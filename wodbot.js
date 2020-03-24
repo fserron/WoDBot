@@ -9,12 +9,13 @@ var targetNumber = 7;
 var doubles = 10;
 var failure = 1;
 var amount = 0;
-var rerollValues = 0;
+var rerollValues = [];
 var autoSuccess = 0;
 var doubleOnly = 0; //Is it really used?
 var customSuccess = 0;
 var successes = 0;
 var botches = 0;
+var cancelValues = [];
 
 client.login(config.loginToken);
 
@@ -41,8 +42,10 @@ client.on('message', msg => {
           .addField(labels.MESSAGE_HELP_REROLL_TITLE, labels.MESSAGE_HELP_REROLL_EXAMPLE, false)
           .addField(labels.MESSAGE_HELP_AUTO_TITLE, labels.MESSAGE_HELP_AUTO_EXAMPLE, false)
           .addField(labels.MESSAGE_HELP_TARGET_TITLE, labels.MESSAGE_HELP_TARGET_EXAMPLE, false)
+          .addField(labels.MESSAGE_HELP_CANCEL_TITLE, labels.MESSAGE_HELP_CANCEL_EXAMPLE, false)
           .addField(labels.MESSAGE_HELP_NO10_TITLE, labels.MESSAGE_HELP_NO10_EXAMPLE, false)
-          .addField(labels.MESSAGE_HELP_CUSTOM_TITLE, labels.MESSAGE_HELP_CUSTOM_EXAMPLE, false);
+          .addField(labels.MESSAGE_HELP_CUSTOM_TITLE, labels.MESSAGE_HELP_CUSTOM_EXAMPLE, false)
+          .setFooter(labels.MESSAGE_HELP_FOOTER, config.IMAGE_WOD_THUMB);
 
           msg.reply(exampleEmbed);
       } else {
@@ -137,6 +140,11 @@ function verify(message){
         for (rr of rerollFaces.split("")){
           rerollValues.push(parseInt(rr));
         }
+      } else if (command === 'c'){
+        var cancelFaces = token.substring(numIndex, token.length);
+        for (cf of cancelFaces.split("")){
+          cancelValues.push(parseInt(cf));
+        }
       } else if (command === 'no'){
         doubles = 0;
       } else if (command === 'cs'){
@@ -207,14 +215,21 @@ function rollDie(){
 
 function calculateResults(diceRoll) {
   for (die of diceRoll) {
+    //If the die greater or equal to the target number or if it's a custom success
     if (die >= targetNumber || die === customSuccess) {
       successes++;
+      //Doubling successes
       if (die >= doubles) {
         successes++;
       }
     }
+    //If there are botches
     if (die === failure) {
       botches++;
+    }
+    //Validating if there is any success cancelling values
+    if (cancelValues.includes(die)) {
+      successes--;
     }
   }
 
@@ -246,9 +261,11 @@ function formatResult(diceRoll) {
 
   var resultGrade = '';
   var resultNumber = '';
-  var resultSuffix = labels.MESSAGE_ROLL_RESULTS_SUFFIX;
+  var resultSuffix = labels.MESSAGE_RESULT_SUFFIX;
   var emoji;
-  if (successes === 0 && botches > 0){
+  console.log('successes: ' + successes);
+  console.log('botches: ' + botches);
+  if (successes < 0 && botches > 0){
     if (botches > 1){
       resultGrade = labels.MESSAGE_RESULT_GRADE_BOTCH_MULTIPLE;
     } else {
@@ -269,11 +286,11 @@ function formatResult(diceRoll) {
       emoji = ' :grin:'
     }
   } else if (successes === 0) {
-    resultSuffix = labels.MESSAGE_ROLL_RESULTS_SUFFIX_FAIL;
+    resultSuffix = labels.MESSAGE_RESULT_SUFFIX_FAIL;
     emoji = ' :weary:'
   }
 
-  var finalResults = labels.MESSAGE_ROLL_RESULTS_PREFIX + resultString + resultSuffix + resultNumber + resultGrade + emoji;
+  var finalResults = labels.MESSAGE_RESULT_PREFIX + resultString + resultSuffix + resultNumber + resultGrade + emoji;
 
   return finalResults;
 }

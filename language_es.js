@@ -27,10 +27,13 @@ const MESSAGE_HELP_AUTO_TITLE = 'Exitos automaticos: a[Cantidad de exitos]';
 const MESSAGE_HELP_AUTO_EXAMPLE = 'Ejemplo: .roll 10 a3 -> Tira 10 dados y añade 3 exitos al resultado.';
 const MESSAGE_HELP_TARGET_TITLE = 'Numero objetivo: t[Valor de exito]';
 const MESSAGE_HELP_TARGET_EXAMPLE = 'Ejemplo: .roll 10 t4 -> Tira 10 dados e identifica los 4 y superiores como éxitos.';
+const MESSAGE_HELP_CANCEL_TITLE = 'Cancelar éxitos: c[Valores que cancela]';
+const MESSAGE_HELP_CANCEL_EXAMPLE = 'Ejemplo: .roll 10 c1 -> Tira 10 dados y cada 1 cancelará un éxito.';
 const MESSAGE_HELP_NO10_TITLE = 'Sin duplicados: no10';
 const MESSAGE_HELP_NO10_EXAMPLE = 'Ejemplo: .roll 10 no10 -> Tira 10 dados y no duplica los 10.';
 const MESSAGE_HELP_CUSTOM_TITLE = 'Éxito customizado: cs[Valor del éxito]';
 const MESSAGE_HELP_CUSTOM_EXAMPLE = 'Ejemplo: .roll 10 cs5 -> Tira 10 dados e identifica los 5 como exitos.';
+const MESSAGE_HELP_FOOTER = 'Para información adicional y como añadirlo a tu canal, visita https://github.com/fserron/WoDBot';
 
 module.exports = {
     ERROR_MULTIPLE_DICE_NUMBERS: ERROR_MULTIPLE_DICE_NUMBERS,
@@ -62,5 +65,8 @@ module.exports = {
     MESSAGE_HELP_NO10_TITLE: MESSAGE_HELP_NO10_TITLE,
     MESSAGE_HELP_NO10_EXAMPLE: MESSAGE_HELP_NO10_EXAMPLE,
     MESSAGE_HELP_CUSTOM_TITLE: MESSAGE_HELP_CUSTOM_TITLE,
-    MESSAGE_HELP_CUSTOM_EXAMPLE: MESSAGE_HELP_CUSTOM_EXAMPLE
+    MESSAGE_HELP_CUSTOM_EXAMPLE: MESSAGE_HELP_CUSTOM_EXAMPLE,
+    MESSAGE_HELP_CANCEL_TITLE: MESSAGE_HELP_CANCEL_TITLE,
+    MESSAGE_HELP_CANCEL_EXAMPLE: MESSAGE_HELP_CANCEL_EXAMPLE,
+    MESSAGE_HELP_FOOTER: MESSAGE_HELP_FOOTER
 }
