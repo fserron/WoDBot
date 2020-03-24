@@ -41,9 +41,9 @@ client.on('message', msg => {
           .addField(labels.MESSAGE_HELP_REROLL_TITLE, labels.MESSAGE_HELP_REROLL_EXAMPLE, false)
           .addField(labels.MESSAGE_HELP_AUTO_TITLE, labels.MESSAGE_HELP_AUTO_EXAMPLE, false)
           .addField(labels.MESSAGE_HELP_TARGET_TITLE, labels.MESSAGE_HELP_TARGET_EXAMPLE, false)
-          .addField(labels.MESSAGE_HELP_TARGET_TITLE, labels.MESSAGE_HELP_TARGET_EXAMPLE, false)
+          .addField(labels.MESSAGE_HELP_NO10_TITLE, labels.MESSAGE_HELP_NO10_EXAMPLE, false)
           .addField(labels.MESSAGE_HELP_CUSTOM_TITLE, labels.MESSAGE_HELP_CUSTOM_EXAMPLE, false);
-          
+
           msg.reply(exampleEmbed);
       } else {
         init();
