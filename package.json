@@ -1,6 +1,6 @@
 {
   "name": "WoDBot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A dice rolling bot for Discord. Custom made for WoD/CofD/Exalted",
   "main": "wodbot.js",
   "scripts": {

@@ -12,7 +12,7 @@ var amount = 0;
 var rerollValues = [];
 var autoSuccess = 0;
 var doubleOnly = 0; //Is it really used?
-var customSuccess = 0;
+var customSuccess = [];
 var successes = 0;
 var botches = 0;
 var cancelValues = [];
@@ -83,11 +83,12 @@ function init(){
   rerollValues = [];
   autoSuccess = 0;
   doubleOnly = 0;
-  customSuccess = 0;
+  customSuccess = [];
   targetNumber = 7;
   doubles = 10;
   successes = 0;
   botches = 0;
+  cancelValues = [];
 }
 
 function verify(message){
@@ -130,7 +131,13 @@ function verify(message){
       var command = token.substring(0, numIndex);
       console.log('Read command: ' + command);
       if (command === 'd') {
+        if (doubles === 0) {
+          return labels.ERROR_CONFLICTING_COMMANDS;
+        }
         doubles = token.substring(numIndex, token.length);
+        if (doubles > 9) {
+          return labels.ERROR_ABOVE_MAX_DUPLICATE;
+        }
       } else if (command === 'a'){
         autoSuccess = token.substring(numIndex, token.length);
       } else if (command === 't'){
@@ -146,9 +153,16 @@ function verify(message){
           cancelValues.push(parseInt(cf));
         }
       } else if (command === 'no'){
-        doubles = 0;
+        if (doubles !== 10) {
+          return labels.ERROR_CONFLICTING_COMMANDS;
+        } else {
+          doubles = 0;
+        }
       } else if (command === 'cs'){
-        customSuccess = token.substring(numIndex, token.length);
+        var csFaces = token.substring(numIndex, token.length);
+        for (cs of csFaces.split("")){
+          customSuccess.push(parseInt(cs));
+        }
       } else {
           return labels.ERROR_INVALID_COMMAND;
       }
@@ -216,10 +230,10 @@ function rollDie(){
 function calculateResults(diceRoll) {
   for (die of diceRoll) {
     //If the die greater or equal to the target number or if it's a custom success
-    if (die >= targetNumber || die === customSuccess) {
+    if (die >= targetNumber || customSuccess.includes(die)) {
       successes++;
       //Doubling successes
-      if (die >= doubles) {
+      if (die >= doubles && doubles !== 0) {
         successes++;
       }
     }
@@ -238,13 +252,18 @@ function calculateResults(diceRoll) {
 
 function formatResult(diceRoll) {
   var resultString = '';
+  console.log('rerollValues: ' + rerollValues);
+  console.log('failure: ' + failure);
+  console.log('targetNumber: ' + targetNumber);
+  console.log('customSuccess: ' + customSuccess);
+  console.log('doubles: ' + doubles);
   for (die of diceRoll) {
     if (rerollValues.includes(die)) {
       resultString += '~~' + die + '~~';
     } else if (die === failure) {
       resultString += '*' + die + '*';
-    } else if (die >= targetNumber || die === customSuccess) {
-      if (die >= doubles) {
+    } else if (die >= targetNumber || customSuccess.includes(die)) {
+      if (die >= doubles && doubles !== 0) {
         resultString += '__**' + die + '**__';
       } else {
         resultString += '**' + die + '**';

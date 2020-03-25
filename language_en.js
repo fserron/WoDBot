@@ -1,10 +1,12 @@
 //Errors
-const ERROR_MULTIPLE_DICE_NUMBERS = 'Error: Multiple dice numbers detected. Use "@wodbot help" to see all posible commands.';
-const ERROR_NO_DICE_NUMBER = 'Error: No dice number detected. Use "@wodbot help" to see all posible commands.';
-const ERROR_COMMAND_WITHOUT_VALUE = 'Error: Command without number detected. Use "@wodbot help" to see all posible commands.';
-const ERROR_INVALID_COMMAND = 'Error: Invalid command detected. Use "@wodbot help" to see all posible commands.';
+const ERROR_MULTIPLE_DICE_NUMBERS = 'Error: Multiple dice numbers detected. Use ".roll help" to see all posible commands.';
+const ERROR_NO_DICE_NUMBER = 'Error: No dice number detected. Use ".roll help" to see all posible commands.';
+const ERROR_COMMAND_WITHOUT_VALUE = 'Error: Command without number detected. Use ".roll help" to see all posible commands.';
+const ERROR_INVALID_COMMAND = 'Error: Invalid command detected. Use ".roll help" to see all posible commands.';
 const ERROR_EXCEED_MAX_DICE_AMOUNT = 'Error: Exceeded maximum amount of dice allowed. Try a lower number.';
 const ERROR_EXCEED_REROLL_AMOUNT = 'Error: Exceeded maximum amount of dice rerolled. Try a lower number of rerolls.';
+const ERROR_CONFLICTING_COMMANDS = 'Error: Conflicting commands detected. Check your roll and try again.'
+const ERROR_ABOVE_MAX_DUPLICATE = 'Error: Cannot specify multiple values to duplicate, nor duplicate above 9. Use ".roll help" to see all posible commands.';
 
 //Result messages
 const MESSAGE_RESULT_PREFIX = 'your roll was: ';
@@ -40,6 +42,8 @@ module.exports = {
     ERROR_INVALID_COMMAND: ERROR_INVALID_COMMAND,
     ERROR_EXCEED_MAX_DICE_AMOUNT: ERROR_EXCEED_MAX_DICE_AMOUNT,
     ERROR_EXCEED_REROLL_AMOUNT: ERROR_EXCEED_REROLL_AMOUNT,
+    ERROR_CONFLICTING_COMMANDS: ERROR_CONFLICTING_COMMANDS,
+    ERROR_ABOVE_MAX_DUPLICATE: ERROR_ABOVE_MAX_DUPLICATE,
 
     MESSAGE_RESULT_PREFIX: MESSAGE_RESULT_PREFIX,
     MESSAGE_RESULT_SUFFIX: MESSAGE_RESULT_SUFFIX,

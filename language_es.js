@@ -1,10 +1,12 @@
 //Errores
-const ERROR_MULTIPLE_DICE_NUMBERS = 'Error: Se detectaron multiples cantidades de dados. Usa "@wodbot help" para ver todos los posibles comandos.';
-const ERROR_NO_DICE_NUMBER = 'Error: No se detecto la cantidad de dados. Usa "@wodbot help" para ver todos los posibles comandos.';
-const ERROR_COMMAND_WITHOUT_VALUE = 'Error: Se detecto un comando sin numero. Usa "@wodbot help" para ver todos los posibles comandos.';
-const ERROR_INVALID_COMMAND = 'Error: Se detectó un comando inválido. Usa "@wodbot help" para ver todos los posibles comandos.';
+const ERROR_MULTIPLE_DICE_NUMBERS = 'Error: Se detectaron multiples cantidades de dados. Usa ".roll help" para ver todos los posibles comandos.';
+const ERROR_NO_DICE_NUMBER = 'Error: No se detecto la cantidad de dados. Usa ".roll help" para ver todos los posibles comandos.';
+const ERROR_COMMAND_WITHOUT_VALUE = 'Error: Se detecto un comando sin numero. Usa ".roll help" para ver todos los posibles comandos.';
+const ERROR_INVALID_COMMAND = 'Error: Se detectó un comando inválido. Usa ".roll help" para ver todos los posibles comandos.';
 const ERROR_EXCEED_MAX_DICE_AMOUNT = 'Error: Se excedio la maxima cantidad de dados permitidos. Intenta con un numero menor.';
 const ERROR_EXCEED_REROLL_AMOUNT = 'Error: Se excedio la maxima cantidad de dados re-tirados. Intenta con un numero menor de re-tiradas.';
+const ERROR_CONFLICTING_COMMANDS = 'Error: Se detectaron comandos en conflicto. Revisa la tirada e intenta de nuevo.'
+const ERROR_ABOVE_MAX_DUPLICATE = 'Error: No se pueden poner multiples valores a duplicar, ni duplicar por arriba de 9. Usa ".roll help" para ver todos los posibles comandos.';
 
 //Mensajes de resultado
 const MESSAGE_RESULT_PREFIX = 'tu tirada fue: ';
@@ -42,6 +44,8 @@ module.exports = {
     ERROR_INVALID_COMMAND: ERROR_INVALID_COMMAND,
     ERROR_EXCEED_MAX_DICE_AMOUNT: ERROR_EXCEED_MAX_DICE_AMOUNT,
     ERROR_EXCEED_REROLL_AMOUNT: ERROR_EXCEED_REROLL_AMOUNT,
+    ERROR_CONFLICTING_COMMANDS: ERROR_CONFLICTING_COMMANDS,
+    ERROR_ABOVE_MAX_DUPLICATE: ERROR_ABOVE_MAX_DUPLICATE,
 
     MESSAGE_RESULT_PREFIX: MESSAGE_RESULT_PREFIX,
     MESSAGE_RESULT_SUFFIX: MESSAGE_RESULT_SUFFIX,
