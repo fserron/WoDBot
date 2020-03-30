@@ -284,7 +284,7 @@ function formatResult(diceRoll) {
   var emoji;
   console.log('successes: ' + successes);
   console.log('botches: ' + botches);
-  if (successes < 0 && botches > 0){
+  if (successes < 0){
     if (botches > 1){
       resultGrade = labels.MESSAGE_RESULT_GRADE_BOTCH_MULTIPLE;
     } else {
@@ -304,9 +304,26 @@ function formatResult(diceRoll) {
     } else {
       emoji = ' :grin:'
     }
-  } else if (successes === 0) {
-    resultSuffix = labels.MESSAGE_RESULT_SUFFIX_FAIL;
-    emoji = ' :weary:'
+  } else {
+    //If there were no successes, but there were cancel values, then it's a failure regardless of the amount of botches
+    if (cancelValues.length > 0) {
+      resultSuffix = labels.MESSAGE_RESULT_SUFFIX_FAIL;
+      emoji = ' :weary:'
+    } else {
+      //Otherwise, if there were no cancel values, we check for botches, as normal
+      if (botches > 0) {
+        if (botches > 1){
+          resultGrade = labels.MESSAGE_RESULT_GRADE_BOTCH_MULTIPLE;
+        } else {
+          resultGrade = labels.MESSAGE_RESULT_GRADE_BOTCH_SINGLE;
+        }
+        resultNumber = botches;
+        emoji = ' :scream:'
+      } else {
+        resultSuffix = labels.MESSAGE_RESULT_SUFFIX_FAIL;
+        emoji = ' :weary:'
+      }
+    }
   }
 
   var finalResults = labels.MESSAGE_RESULT_PREFIX + resultString + resultSuffix + resultNumber + resultGrade + emoji;
